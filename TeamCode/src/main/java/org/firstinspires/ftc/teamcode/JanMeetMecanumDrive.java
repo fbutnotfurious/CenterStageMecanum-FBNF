@@ -50,6 +50,15 @@ public class JanMeetMecanumDrive extends OpMode
     private final double launcherFinal=0.8;
     private boolean hangingStatus=false;
 
+    private final double driveMotorSnailSpeed = 0.35;
+    // constant for slow speed
+    private final double driveMotorSlowSpeed = 0.50;
+    //constant for fast speed
+    private final double driveMotorFastSpeed = 1.00;
+
+    private final double speedChanger = 0.5;
+
+
     /* Code to run ONCE when the driver hits INIT
      */
     @Override
@@ -126,6 +135,8 @@ public class JanMeetMecanumDrive extends OpMode
     public void start() {
         runtime.reset();
 
+
+
         //armLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftArmMotor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftArmMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -173,18 +184,37 @@ public class JanMeetMecanumDrive extends OpMode
         // Denominator is the largest motor power (absolute value) or 1
         // This ensures all the powers maintain the same ratio,
         // but only if at least one is out of the range [-1, 1]
-        double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
-        double frontLeftPower = (y + x + rx) / denominator;
-        double backLeftPower = (y - x + rx) / denominator;
-        double frontRightPower = (y - x - rx) / denominator;
-        double backRightPower = (y + x - rx) / denominator;
+        double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx));
+        double frontLeftPower = (y + x + rx);// / denominator;
+        double backLeftPower = (y - x + rx);// / denominator;
+        double frontRightPower = (y - x - rx);// / denominator;
+        double backRightPower = (y + x - rx);// / denominator;
 
+
+
+//lf=frontLeftPower,lr=backLeftPower,rf=frontRightPower and rr=backRightPower
+        if (Math.abs(frontLeftPower) > driveMotorSlowSpeed || Math.abs(backLeftPower) > driveMotorSlowSpeed || Math.abs(frontRightPower) > driveMotorSlowSpeed || Math.abs(backRightPower) >driveMotorSlowSpeed)
+        {
+            double max = 0;
+            max = Math.max(Math.abs(frontLeftPower), Math.abs(backLeftPower));
+            max = Math.max(Math.abs(frontRightPower), max);
+            max = Math.max(Math.abs(backRightPower), max);
+
+            // scales output if y + x + rx >1
+            frontLeftPower /= max;
+            backLeftPower /= max;
+            frontRightPower /= max;
+            backRightPower /= max;
+        }
+        //
         frontLeftMotor.setPower(frontLeftPower);
         backLeftMotor.setPower(backLeftPower);
         frontRightMotor.setPower(frontRightPower);
         backRightMotor.setPower(backRightPower);
 
         //LAUNCHER
+
+
         if (gamepad2.right_bumper)
         {
             launcher.setPosition(launcherFinal);
