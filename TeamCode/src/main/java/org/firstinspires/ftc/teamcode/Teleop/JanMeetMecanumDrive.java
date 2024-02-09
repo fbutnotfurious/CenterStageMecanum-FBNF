@@ -8,6 +8,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import java.lang.Math;
+
+
 
 @TeleOp(name="Jan Meet 2024", group="Iterative Opmode")
 
@@ -56,7 +59,7 @@ public class JanMeetMecanumDrive extends OpMode
     //constant for fast speed
     private final double driveMotorFastSpeed = 1.00;
 
-    private final double speedChanger = 0.5;
+    // private final double speedChanger = 0.5;
 
 
     /* Code to run ONCE when the driver hits INIT
@@ -177,22 +180,15 @@ public class JanMeetMecanumDrive extends OpMode
     public void loop() {
 
         //Four motor drive control
-        double y = gamepad2.left_stick_y; // Remember, Y stick value is reversed
-        double x = -gamepad2.right_stick_x ; // Counteract imperfect strafing
-        double rx = -gamepad2.left_stick_x;
+        double y = Math.pow(gamepad2.left_stick_y,3); // Remember, Y stick value is reversed
+        double x = -Math.pow(gamepad2.right_stick_x,3); // Counteract imperfect strafing
+        double rx = -Math.pow(gamepad2.left_stick_x,3);
 
-        // Denominator is the largest motor power (absolute value) or 1
-        // This ensures all the powers maintain the same ratio,
-        // but only if at least one is out of the range [-1, 1]
-        double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx));
-        double frontLeftPower = (y + x + rx);// / denominator;
-        double backLeftPower = (y - x + rx);// / denominator;
-        double frontRightPower = (y - x - rx);// / denominator;
-        double backRightPower = (y + x - rx);// / denominator;
+        double frontLeftPower = (y + x + rx);
+        double backLeftPower = (y - x + rx);
+        double frontRightPower = (y - x - rx);
+        double backRightPower = (y + x - rx);
 
-
-
-//lf=frontLeftPower,lr=backLeftPower,rf=frontRightPower and rr=backRightPower
         if (Math.abs(frontLeftPower) > driveMotorSlowSpeed || Math.abs(backLeftPower) > driveMotorSlowSpeed || Math.abs(frontRightPower) > driveMotorSlowSpeed || Math.abs(backRightPower) >driveMotorSlowSpeed)
         {
             double max = 0;
@@ -205,6 +201,26 @@ public class JanMeetMecanumDrive extends OpMode
             backLeftPower /= max;
             frontRightPower /= max;
             backRightPower /= max;
+        }
+        frontLeftPower  = Range.clip(frontLeftPower, -driveMotorSlowSpeed, driveMotorSlowSpeed) ;
+        backLeftPower   = Range.clip(backLeftPower, -driveMotorSlowSpeed, driveMotorSlowSpeed) ;
+        frontRightPower = Range.clip(frontRightPower, -driveMotorSlowSpeed, driveMotorSlowSpeed) ;
+        backRightPower  = Range.clip(backRightPower, -driveMotorSlowSpeed, driveMotorSlowSpeed);
+
+        if (gamepad2.left_trigger>0)
+        {
+            frontLeftPower  = Range.clip(frontLeftPower, -driveMotorFastSpeed, driveMotorFastSpeed) ;
+            backLeftPower   = Range.clip(backLeftPower, -driveMotorFastSpeed, driveMotorFastSpeed) ;
+            frontRightPower =  Range.clip(frontRightPower, -driveMotorFastSpeed, driveMotorFastSpeed);
+            backRightPower  = Range.clip(backRightPower, -driveMotorSlowSpeed, driveMotorSlowSpeed);
+        }
+        if (gamepad2.right_trigger>0)
+        {
+            frontLeftPower  = Range.clip(frontLeftPower, -driveMotorFastSpeed, driveMotorSnailSpeed) ;
+            backLeftPower   = Range.clip(backLeftPower, -driveMotorFastSpeed, driveMotorSnailSpeed) ;
+            frontRightPower =  Range.clip(frontRightPower, -driveMotorFastSpeed,driveMotorSnailSpeed);
+            backRightPower  = Range.clip(backRightPower, -driveMotorSlowSpeed, driveMotorSnailSpeed);
+
         }
         //
         frontLeftMotor.setPower(frontLeftPower);
@@ -229,7 +245,7 @@ public class JanMeetMecanumDrive extends OpMode
 
         //ARM & WRIST
         double manualArmPower;
-        manualArmPower = Math.pow(gamepad1.right_trigger,3) - Math.pow(gamepad1.left_trigger,3);
+        manualArmPower = Math.pow(gamepad1.left_trigger,3) - Math.pow(gamepad1.right_trigger,3);
 
         if (gamepad2.y==true) {
             hangingStatus = true;
