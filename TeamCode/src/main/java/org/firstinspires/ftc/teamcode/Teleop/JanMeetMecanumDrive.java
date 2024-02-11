@@ -53,7 +53,7 @@ public class JanMeetMecanumDrive extends OpMode
     private final double launcherFinal=0.8;
     private boolean hangingStatus=false;
 
-    private final double driveMotorSnailSpeed = 0.35;
+    private final double driveMotorSnailSpeed = 0.15;
     // constant for slow speed
     private final double driveMotorSlowSpeed = 0.50;
     //constant for fast speed
@@ -181,13 +181,22 @@ public class JanMeetMecanumDrive extends OpMode
 
         //Four motor drive control
         double y = Math.pow(gamepad2.left_stick_y,3); // Remember, Y stick value is reversed
-        double x = -Math.pow(gamepad2.right_stick_x,3); // Counteract imperfect strafing
-        double rx = -Math.pow(gamepad2.left_stick_x,3);
+        double rx = Math.pow(gamepad2.right_stick_x,3); // Counteract imperfect strafing
+        double x = Math.pow(gamepad2.left_stick_x,3);
 
-        double frontLeftPower = (y + x + rx);
-        double backLeftPower = (y - x + rx);
-        double frontRightPower = (y - x - rx);
-        double backRightPower = (y + x - rx);
+        /*
+        double frontRightPower = (y + x + rx);
+        double frontLeftPower = (y - x + rx);
+        double backRightPower = (y - x - rx);
+        double backLeftPower = (y + x - rx);
+        */
+
+        double frontLeftPower = (y - x - rx);
+        double frontRightPower = (-y +x - rx);
+        double backRightPower = (y + x + rx);
+        double backLeftPower = (-y -x + rx);
+
+
 
         if (Math.abs(frontLeftPower) > driveMotorSlowSpeed || Math.abs(backLeftPower) > driveMotorSlowSpeed || Math.abs(frontRightPower) > driveMotorSlowSpeed || Math.abs(backRightPower) >driveMotorSlowSpeed)
         {
@@ -202,31 +211,31 @@ public class JanMeetMecanumDrive extends OpMode
             frontRightPower /= max;
             backRightPower /= max;
         }
-        frontLeftPower  = Range.clip(frontLeftPower, -driveMotorSlowSpeed, driveMotorSlowSpeed) ;
-        backLeftPower   = Range.clip(backLeftPower, -driveMotorSlowSpeed, driveMotorSlowSpeed) ;
-        frontRightPower = Range.clip(frontRightPower, -driveMotorSlowSpeed, driveMotorSlowSpeed) ;
-        backRightPower  = Range.clip(backRightPower, -driveMotorSlowSpeed, driveMotorSlowSpeed);
+        double frontLeftPowerFinal  = Range.clip(frontLeftPower, -driveMotorSlowSpeed, driveMotorSlowSpeed) ;
+        double backLeftPowerFinal   = Range.clip(backLeftPower, -driveMotorSlowSpeed, driveMotorSlowSpeed) ;
+        double frontRightPowerFinal = Range.clip(frontRightPower, -driveMotorSlowSpeed, driveMotorSlowSpeed) ;
+        double backRightPowerFinal  = Range.clip(backRightPower, -driveMotorSlowSpeed, driveMotorSlowSpeed);
 
         if (gamepad2.left_trigger>0)
         {
-            frontLeftPower  = Range.clip(frontLeftPower, -driveMotorFastSpeed, driveMotorFastSpeed) ;
-            backLeftPower   = Range.clip(backLeftPower, -driveMotorFastSpeed, driveMotorFastSpeed) ;
-            frontRightPower =  Range.clip(frontRightPower, -driveMotorFastSpeed, driveMotorFastSpeed);
-            backRightPower  = Range.clip(backRightPower, -driveMotorSlowSpeed, driveMotorSlowSpeed);
+            frontLeftPowerFinal  = Range.clip(frontLeftPower, -driveMotorFastSpeed, driveMotorFastSpeed) ;
+            backLeftPowerFinal   = Range.clip(backLeftPower, -driveMotorFastSpeed, driveMotorFastSpeed) ;
+            frontRightPowerFinal =  Range.clip(frontRightPower, -driveMotorFastSpeed, driveMotorFastSpeed);
+            backRightPowerFinal  = Range.clip(backRightPower, -driveMotorFastSpeed, driveMotorFastSpeed);
         }
         if (gamepad2.right_trigger>0)
         {
-            frontLeftPower  = Range.clip(frontLeftPower, -driveMotorFastSpeed, driveMotorSnailSpeed) ;
-            backLeftPower   = Range.clip(backLeftPower, -driveMotorFastSpeed, driveMotorSnailSpeed) ;
-            frontRightPower =  Range.clip(frontRightPower, -driveMotorFastSpeed,driveMotorSnailSpeed);
-            backRightPower  = Range.clip(backRightPower, -driveMotorSlowSpeed, driveMotorSnailSpeed);
+            frontLeftPowerFinal  = Range.clip(frontLeftPower, -driveMotorSnailSpeed, driveMotorSnailSpeed) ;
+            backLeftPowerFinal   = Range.clip(backLeftPower, -driveMotorSnailSpeed, driveMotorSnailSpeed) ;
+            frontRightPowerFinal =  Range.clip(frontRightPower, -driveMotorSnailSpeed,driveMotorSnailSpeed);
+            backRightPowerFinal  = Range.clip(backRightPower, -driveMotorSnailSpeed, driveMotorSnailSpeed);
 
         }
         //
-        frontLeftMotor.setPower(frontLeftPower);
-        backLeftMotor.setPower(backLeftPower);
-        frontRightMotor.setPower(frontRightPower);
-        backRightMotor.setPower(backRightPower);
+        frontLeftMotor.setPower(frontLeftPowerFinal);
+        backLeftMotor.setPower(backLeftPowerFinal);
+        frontRightMotor.setPower(frontRightPowerFinal);
+        backRightMotor.setPower(backRightPowerFinal);
 
         //LAUNCHER
 
