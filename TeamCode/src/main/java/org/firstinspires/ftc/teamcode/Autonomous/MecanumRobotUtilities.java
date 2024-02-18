@@ -323,7 +323,7 @@ public class MecanumRobotUtilities {
             MecanumRobotUtilities.BackLeftMotor.setPower(MecanumRobotUtilities.BackLeftmotorPower);
 
             // keep looping while we are still active, and there is time left, and if any of the motor is running.
-            while (opMode.opModeIsActive() &&
+            while (opMode.opModeIsActive() && !opMode.isStopRequested() &&
                     (runtime.seconds() < timeoutS) &&
                     (MecanumRobotUtilities.FrontLeftMotor.isBusy() &&
                             MecanumRobotUtilities.FrontRightMotor.isBusy()

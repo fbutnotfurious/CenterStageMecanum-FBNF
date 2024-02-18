@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Autonomous.MecanumRobotUtilities;
 import org.firstinspires.ftc.teamcode.Autonomous.Auto_Struct;
 
+
 @Autonomous(name="Blue Backstage  Robot Corner Park", group="Robot")
 //@Disabled
 public class Blue_BackStage_CornerPark extends LinearOpMode
@@ -14,8 +15,11 @@ public class Blue_BackStage_CornerPark extends LinearOpMode
     @Override
     public void runOpMode()
     {
-        // initialize arm stuff
+        // initialize mecanum class
         MecanumRobotUtilities.InitializeHardware(Blue_BackStage_CornerPark.this);
+
+        // Initialize Arm class
+
 
         waitForStart();
         while (opModeIsActive())

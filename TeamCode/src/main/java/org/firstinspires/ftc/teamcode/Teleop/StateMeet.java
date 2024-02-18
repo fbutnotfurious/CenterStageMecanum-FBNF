@@ -7,14 +7,14 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
 import java.lang.Math;
 
 
 
-@TeleOp(name="Jan Meet 2024", group="Iterative Opmode")
+@TeleOp(name="State Meet TeleOp", group="Iterative Opmode")
 
-public class JanMeetMecanumDrive extends OpMode
+public class StateMeet extends OpMode
 {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -39,10 +39,11 @@ public class JanMeetMecanumDrive extends OpMode
     //private final double armManualDeadband = 0.03;
     private final double armManualDeadband = 0.15;
 
-    private final double gripperClosedPosition = 1.0;
-    private final double gripperOpenPosition = 0.0; //0.7 0.5
-    private final double wristUpPosition = 1.0;//1.5 1.0 0.8
-    private final double wristDownPosition = 0.2;//0.4 0.5 0.4
+    // Gripper & Wrist Ranges:
+    private final double gripperClosedPosition = 0.6; // Previous Value: 0.6
+    private final double gripperOpenPosition = 0.45; // Previous Value: 0.45
+    private final double wristUpPosition = 1.5; // Previous Value:1.0  0.9
+    private final double wristDownPosition = 0.4; // Previous Value : 0.3
 
     private final int armHomePosition = 0;
     private final int armIntakePosition = 10;
@@ -53,12 +54,15 @@ public class JanMeetMecanumDrive extends OpMode
     private final double launcherFinal=0.8;
     private boolean hangingStatus=false;
 
-    private final double driveMotorSnailSpeed = 0.15;
+    // Speed Modes:
+    private final double driveMotorSnailSpeed = 0.30; // Previous Value: 0.35
     // constant for slow speed
     private final double driveMotorSlowSpeed = 0.50;
     //constant for fast speed
     private final double driveMotorFastSpeed = 1.00;
 
+    private final double LowmanualArmPower=-0.8;
+    private final double HighmanualArmPower=0.8;
     // private final double speedChanger = 0.5;
 
 
@@ -92,32 +96,30 @@ public class JanMeetMecanumDrive extends OpMode
         launcher = hardwareMap.get(Servo.class, "launcher");
 
 
-        //armLeft.setDirection(DcMotor.Direction.FORWARD);
         leftArmMotor1.setDirection(DcMotor.Direction.FORWARD);
         leftArmMotor2.setDirection(DcMotor.Direction.REVERSE);
-        //armRight.setDirection(DcMotor.Direction.REVERSE);
+
         rightArmMotor1.setDirection(DcMotor.Direction.FORWARD);
         rightArmMotor2.setDirection(DcMotor.Direction.REVERSE);
-        //armLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         leftArmMotor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftArmMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        //armRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         rightArmMotor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightArmMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        //armLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         leftArmMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftArmMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        //armRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         rightArmMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightArmMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        //armLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
         leftArmMotor1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftArmMotor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        //armRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
         rightArmMotor1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightArmMotor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        // armLeft.setPower(0.0);
-        // armRight.setPower(0.0);
+
 
         telemetry.addData("Status", "Initialized");
 
@@ -253,8 +255,9 @@ public class JanMeetMecanumDrive extends OpMode
 
 
         //ARM & WRIST
-        double manualArmPower;
-        manualArmPower = Math.pow(gamepad1.left_trigger,3) - Math.pow(gamepad1.right_trigger,3);
+        double initialmanualArmPower,manualArmPower;
+        initialmanualArmPower = Math.pow(gamepad1.left_trigger,3) - Math.pow(gamepad1.right_trigger,3);
+        manualArmPower = Range.clip(initialmanualArmPower, LowmanualArmPower, HighmanualArmPower);
 
         if (gamepad2.y==true) {
             hangingStatus = true;
