@@ -42,12 +42,9 @@ public class AutoMechanumUnitTest extends LinearOpMode
     @Override
     public void runOpMode()
     {
-        // initialize arm stuff
+        // initialize  stuff
         MecanumRobotUtilities.InitializeHardware(AutoMechanumUnitTest.this);
         ArmRobotUtilities.InitializeArm(AutoMechanumUnitTest.this);
-        CameraRobotUtilities.detector=new WebcamPipeline(telemetry, StartPosition.BLUE_STAGE);
-        CameraRobotUtilities cu= new CameraRobotUtilities();
-
         ArmRobotUtilities.ResetArm();
         InitializeCamera(AutoMechanumUnitTest.this);
         SetPipeline();

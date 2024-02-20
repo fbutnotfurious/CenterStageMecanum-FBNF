@@ -41,9 +41,9 @@ public class StateMeet extends OpMode
 
     // Gripper & Wrist Ranges:
     private final double gripperClosedPosition = 0.6; // Previous Value: 0.6
-    private final double gripperOpenPosition = 0.45; // Previous Value: 0.45
+    private final double gripperOpenPosition = 0.43; // Previous Value: 0.45
     private final double wristUpPosition = 1.5; // Previous Value:1.0  0.9
-    private final double wristDownPosition = 0.4; // Previous Value : 0.3
+    private final double wristDownPosition = 0.42; // Previous Value : 0.3
 
     private final int armHomePosition = 0;
     private final int armIntakePosition = 10;
@@ -259,7 +259,7 @@ public class StateMeet extends OpMode
         initialmanualArmPower = Math.pow(gamepad1.left_trigger,3) - Math.pow(gamepad1.right_trigger,3);
         manualArmPower = Range.clip(initialmanualArmPower, LowmanualArmPower, HighmanualArmPower);
 
-        if (gamepad2.y==true) {
+        if (gamepad2.y==true && gamepad1.right_bumper==true) {
             hangingStatus = true;
         }
         if (gamepad2.a==true) {

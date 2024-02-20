@@ -18,14 +18,15 @@ public class ArmRobotUtilities
 
 
     // Gripper & Wrist Ranges:
-    private final double gripperClosedPosition = 0.6;
-    private final double gripperOpenPosition = 0.45;
-    private final double wristUpPosition = 1.5;
-    private final double wristDownPosition = 0.4;
+    public static final double gripperClosedPosition = 0.6;
+    public static final double gripperOpenPosition = 0.45;
+    public static final double wristUpPosition = 1.5;
+    public static final double wristDownPosition = 0.43;
 
     public static final int armHomePosition = 0;
-    public static final int armIntakePosition = -200;
-    public static final int armScoreLeftPosition = 450;
+    public static final int armIntakePosition = 0;
+    public static final int armIntermediate = 300;
+    public static final int armScoreLeftPosition = 525;
     public static final double armSpeed=0.3;
     public static final int armShutdownThreshold = 5;
 
@@ -169,7 +170,7 @@ public class ArmRobotUtilities
         // open gripper to drop pixel
         do {
             gripper.setPosition(gripperSetPosition);// Open Gripper to drop of pixel
-        } while (gripper.getPosition() != gripperSetPosition | (runtime.seconds() < 1.0));
+        } while (gripper.getPosition() != gripperSetPosition | (runtime.seconds() < 0.3));
        // sleep(100);
 
     }
