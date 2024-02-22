@@ -96,15 +96,18 @@ public class Path_Constants
 
         // Frontstage Blue (FSB) Left Spike:
         // Corner Park Constants:
-        FSB_WP_Left[0] = 26.0; // Move Forward by 24.0
-        FSB_WP_Left[1] = 22.0; // Spin Clockwise by 22.0
-        FSB_WP_Left[2] = 24.0; // Move Backward by 18.0
-        FSB_WP_Left[3] = 3.0; // Move Backward by 3.0
-        FSB_WP_Left[4] = 3.0; // Move Forward by 3.0
-        FSB_WP_Left[5] = 24.0; // Strafe Left by 10.0
-        FSB_WP_Left[6] = 30.0; // Move Backward by 30.0
-        FSB_WP_Left[7] = 8.0; // Strafe Right by 8.0
-        FSB_WP_Left[8] = 20.0; // Strafe Right by 30.0
+        FSB_WP_Left[0] = 7.0; // Strafe Right by 5
+        FSB_WP_Left[1] = 6.0; // Move Forward by 6.0
+        FSB_WP_Left[2] = 22.0; // Spin Anticlockwise by 22.0
+        FSB_WP_Left[3] = 24.0; // Strafe Right by 24.0
+        FSB_WP_Left[4] = 8.0; // Move Forward by 8.0
+        // drop wrist and open gripper
+        FSB_WP_Left[5] = 3.25; // Move Backward by 3.0
+        // close gripper and wrist up
+        FSB_WP_Left[6] = 7.0; // Move Backward by 7.0
+        FSB_WP_Left[7] = 20.0; // Strafe Right 18.0
+        FSB_WP_Left[8] = 44.0; // Spin Anticlockwise by 44.0
+
         // Center Park Constants:
         FSB_WP_Left[9] = 4.0; // Strafe Left by 4.0
         FSB_WP_Left[10] = 12.0; // Move Backward by 12.0
@@ -112,14 +115,16 @@ public class Path_Constants
 
         // Frontstage Blue (FSB) Right Spike:
         // Corner Park Constants:
-        FSB_WP_Right[0] = 24.0; // Move Forward by 24.0
-        FSB_WP_Right[1] = 22.0; // Spin Clockwise by 22.0
-        FSB_WP_Right[2] = 2.0; // Move Forward by 2.0
+        FSB_WP_Right[0] = 10.25; // Strafe Right by 10.25
+        FSB_WP_Right[1] = 10.0; // Move Forward by 10.0
+        // drop wrist
+        FSB_WP_Right[2] = 7.0; // Move Forward by 7.0
+        // open gripper
         FSB_WP_Right[3] = 3.0; // Move Backward by 3.0
-        FSB_WP_Right[4] = 12; // Strafe Right by 12
-        FSB_WP_Right[5] = 30.0; // Move Backward by 30.0
-        FSB_WP_Right[6] = 8.0; // Strafe Left by 8.0
-        FSB_WP_Right[7] = 24.0; // Strafe Right 24.0
+        // close gripper wrist up
+        FSB_WP_Right[4] = 10.5; // Strafe Left by 9.5
+        FSB_WP_Right[5] = 33.0; // Move Forward by 33.0
+        FSB_WP_Right[6] = 22.0; // Spin Clockwise by 22.0
         // Center Park Constants:
         FSB_WP_Right[8] = 20.0; // Strafe Left by 20.0
         FSB_WP_Right[9] = 12.0; // Move Backward by 12.0

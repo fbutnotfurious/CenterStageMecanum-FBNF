@@ -59,7 +59,6 @@ public class Blue_BackStage_CenterPark extends LinearOpMode
         waitForStart();
         startCamera(Blue_BackStage_CenterPark.this);
 
-        waitForStart();
         while (opModeIsActive())
         {
            if (location==Prop.CENTER) {

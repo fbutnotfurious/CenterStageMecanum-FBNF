@@ -62,7 +62,7 @@ public class Blue_FrontStage_CornerPark extends LinearOpMode
         waitForStart();
         startCamera(Blue_FrontStage_CornerPark.this);
 
-        waitForStart();
+
         while (opModeIsActive())
         {
             if (location==Prop.CENTER)
@@ -177,34 +177,44 @@ public class Blue_FrontStage_CornerPark extends LinearOpMode
             }
             else if (location==Prop.LEFT)
             {
-                // Move Forward #1:
+                // Strafe Right:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.FORWARD, 0.4,
+                        (Auto_Struct.RobotDirection.RIGHT, 0.4,
                                 Path_Constants.FSB_WP_Left[0], 10.0,
                                 Blue_FrontStage_CornerPark.this);
                 sleep(sleeptime);
-                // Turn Right:
+                // Move Forward:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.SPINCLOCKWISE, turnSpeed,
+                        (Auto_Struct.RobotDirection.FORWARD, 0.4,
                                 Path_Constants.FSB_WP_Left[1], 10.0,
                                 Blue_FrontStage_CornerPark.this);
                 sleep(sleeptime);
-                // Move Backward #2:
+                // Spin Anticlockwise:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.BACKWARD, 0.4,
+                        (Auto_Struct.RobotDirection.SPINANTICLOCKWISE, 0.4,
                                 Path_Constants.FSB_WP_Left[2], 10.0,
                                 Blue_FrontStage_CornerPark.this);
                 sleep(sleeptime);
+                // Strafe Right:
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.RIGHT, 0.4,
+                                Path_Constants.FSB_WP_Left[3], 10.0,
+                                Blue_FrontStage_CornerPark.this);
                 // Wrist Down:
                 ArmRobotUtilities.OperateWrist(ArmRobotUtilities.wristDownPosition);
                 sleep(1000);
+                // Move Forward:
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.FORWARD, 0.4,
+                                Path_Constants.FSB_WP_Left[4], 10.0,
+                                Blue_FrontStage_CornerPark.this);
                 // Open Gripper:
                 ArmRobotUtilities.OperateGripper(ArmRobotUtilities.gripperOpenPosition);
                 sleep(sleeptime);
                 // Move Backward #1:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.BACKWARD, driveSpeed,
-                                Path_Constants.FSB_WP_Left[3], 10.0,
+                                Path_Constants.FSB_WP_Left[5], 10.0,
                                 Blue_FrontStage_CornerPark.this);
                 sleep(sleeptime);
                 // Close Gripper:
@@ -213,78 +223,49 @@ public class Blue_FrontStage_CornerPark extends LinearOpMode
                 // Wrist Up:
                 ArmRobotUtilities.OperateWrist(ArmRobotUtilities.wristUpPosition);
                 sleep(sleeptime);
-                // Move Forward #2:
+                // Move Backward:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.FORWARD, 0.4,
-                                Path_Constants.FSB_WP_Left[4], 10.0,
-                                Blue_FrontStage_CornerPark.this);
-                sleep(sleeptime);
-                // Strafe Left:
-                MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.LEFT, driveSpeed,
-                                Path_Constants.FSB_WP_Left[5], 10.0,
-                                Blue_FrontStage_CornerPark.this);
-                sleep(sleeptime);
-                // Wrist Down:
-                ArmRobotUtilities.OperateWrist(ArmRobotUtilities.wristDownPosition);
-                sleep(sleeptime);
-                // Move Backward #3:
-                MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.BACKWARD, driveSpeed,
+                        (Auto_Struct.RobotDirection.BACKWARD, 0.4,
                                 Path_Constants.FSB_WP_Left[6], 10.0,
                                 Blue_FrontStage_CornerPark.this);
                 sleep(sleeptime);
                 // Strafe Right:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.RIGHT, driveSpeed,
+                        (Auto_Struct.RobotDirection.RIGHT, 0.4,
                                 Path_Constants.FSB_WP_Left[7], 10.0,
                                 Blue_FrontStage_CornerPark.this);
                 sleep(sleeptime);
-                // Raise Arm:
-                ArmRobotUtilities.encoderArm(ArmRobotUtilities.armSpeed * 2,
-                        ArmRobotUtilities.armScoreLeftPosition, 5.0,
-                        Blue_FrontStage_CornerPark.this);
-                // Open Gripper:
-                ArmRobotUtilities.OperateGripper(ArmRobotUtilities.gripperOpenPosition);
-                // Drop Arm: (only slightly)
-                ArmRobotUtilities.encoderArm(-ArmRobotUtilities.armSpeed * 2.5,
-                        ArmRobotUtilities.armIntermediate, 5.0,
-                        Blue_FrontStage_CornerPark.this);
-                // Strafe Right:
+                // Spin Anticlockwise:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.RIGHT, driveSpeed,
+                        (Auto_Struct.RobotDirection.SPINANTICLOCKWISE, driveSpeed,
                                 Path_Constants.FSB_WP_Left[8], 10.0,
                                 Blue_FrontStage_CornerPark.this);
                 sleep(sleeptime);
-                // Drop Arm: (to final position)
-                ArmRobotUtilities.encoderArm(-ArmRobotUtilities.armSpeed * 2.5,
-                        ArmRobotUtilities.armIntakePosition, 5.0,
-                        Blue_FrontStage_CornerPark.this);
 
                 // END OF AUTONOMOUS
             }
             else
             {
-                // Move Forward #1:
+                // Strafe Right:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.FORWARD, 0.4,
+                        (Auto_Struct.RobotDirection.RIGHT, 0.4,
                                 Path_Constants.FSB_WP_Right[0], 10.0,
                                 Blue_FrontStage_CornerPark.this);
                 sleep(sleeptime);
-                // Turn Right:
+                // Move Forward:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.SPINCLOCKWISE, turnSpeed,
+                        (Auto_Struct.RobotDirection.FORWARD, 0.4,
                                 Path_Constants.FSB_WP_Right[1], 10.0,
                                 Blue_FrontStage_CornerPark.this);
+                sleep(sleeptime);
+                // Wrist Down:
+                ArmRobotUtilities.OperateWrist(ArmRobotUtilities.wristDownPosition);
                 sleep(sleeptime);
                 // Move Forward #2:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.FORWARD, driveSpeed,
                                 Path_Constants.FSB_WP_Right[2], 10.0,
                                 Blue_FrontStage_CornerPark.this);
-                // Wrist Down:
-                ArmRobotUtilities.OperateWrist(ArmRobotUtilities.wristDownPosition);
-                sleep(sleeptime);
                 // Open Gripper:
                 ArmRobotUtilities.OperateGripper(ArmRobotUtilities.gripperOpenPosition);
                 sleep(sleeptime);
@@ -300,44 +281,25 @@ public class Blue_FrontStage_CornerPark extends LinearOpMode
                 // Wrist Up:
                 ArmRobotUtilities.OperateWrist(ArmRobotUtilities.wristUpPosition);
                 sleep(sleeptime);
-                // Strafe Right:
-                MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.RIGHT, driveSpeed,
-                                Path_Constants.FSB_WP_Right[4], 10.0,
-                                Blue_FrontStage_CornerPark.this);
-                sleep(sleeptime);
-                // Move Backward #2:
-                MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.BACKWARD, driveSpeed,
-                                Path_Constants.FSB_WP_Right[5], 10.0,
-                                Blue_FrontStage_CornerPark.this);
-                sleep(sleeptime);
                 // Strafe Left:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.LEFT, driveSpeed,
+                                Path_Constants.FSB_WP_Right[4], 10.0,
+                                Blue_FrontStage_CornerPark.this);
+                sleep(sleeptime);
+                // Move Forward:
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.FORWARD, driveSpeed,
+                                Path_Constants.FSB_WP_Right[5], 10.0,
+                                Blue_FrontStage_CornerPark.this);
+                sleep(sleeptime);
+                // Spin Clockwise:
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.SPINCLOCKWISE, turnSpeed,
                                 Path_Constants.FSB_WP_Right[6], 10.0,
                                 Blue_FrontStage_CornerPark.this);
                 sleep(sleeptime);
-                // Raise Arm:
-                ArmRobotUtilities.encoderArm(ArmRobotUtilities.armSpeed * 2,
-                        ArmRobotUtilities.armScoreLeftPosition, 5.0,
-                        Blue_FrontStage_CornerPark.this);
-                // Open Gripper:
-                ArmRobotUtilities.OperateGripper(ArmRobotUtilities.gripperOpenPosition);
-                // Drop Arm: (only slightly)
-                ArmRobotUtilities.encoderArm(-ArmRobotUtilities.armSpeed * 2.5,
-                        ArmRobotUtilities.armIntermediate, 5.0,
-                        Blue_FrontStage_CornerPark.this);
-                // Strafe Right:
-                MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.RIGHT, driveSpeed,
-                                Path_Constants.FSB_WP_Right[7], 10.0,
-                                Blue_FrontStage_CornerPark.this);
-                sleep(sleeptime);
-                // Drop Arm: (to final position)
-                ArmRobotUtilities.encoderArm(-ArmRobotUtilities.armSpeed * 2.5,
-                        ArmRobotUtilities.armIntakePosition, 5.0,
-                        Blue_FrontStage_CornerPark.this);
+
                 // END OF AUTONOMOUS
             }
             terminateOpModeNow();
