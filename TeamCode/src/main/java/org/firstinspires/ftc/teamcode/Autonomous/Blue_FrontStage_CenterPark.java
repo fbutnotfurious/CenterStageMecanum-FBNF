@@ -62,7 +62,7 @@ public class Blue_FrontStage_CenterPark extends LinearOpMode
         waitForStart();
         startCamera(Blue_FrontStage_CenterPark.this);
 
-        waitForStart();
+
         while (opModeIsActive())
         {
             if (location==Prop.CENTER)
@@ -97,29 +97,55 @@ public class Blue_FrontStage_CenterPark extends LinearOpMode
                 // Wrist Up:
                 ArmRobotUtilities.OperateWrist(ArmRobotUtilities.wristUpPosition);
                 sleep(sleeptime);
-                // Move Backward #2:
+
+                // strafe right by 12:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.BACKWARD, driveSpeed,
+                        (Auto_Struct.RobotDirection.RIGHT, driveSpeed,
                                 Path_Constants.FSB_WP_Center[3], 10.0,
                                 Blue_FrontStage_CenterPark.this);
-                // Move Right Front Diagonal:
+                // Move front by 18:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.RIGHTFRONTDIAGONAL, driveSpeed,
+                        (Auto_Struct.RobotDirection.FORWARD, driveSpeed,
                                 Path_Constants.FSB_WP_Center[4], 10.0,
                                 Blue_FrontStage_CenterPark.this);
                 sleep(sleeptime);
-                // Turn Right:
+                // strafe left by 18:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.SPINCLOCKWISE, turnSpeed,
+                        (Auto_Struct.RobotDirection.LEFT, turnSpeed,
                                 Path_Constants.FSB_WP_Center[5], 10.0,
                                 Blue_FrontStage_CenterPark.this);
                 sleep(sleeptime);
-                // Move Backward #2:
+                // turn right by 21.5:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.BACKWARD, 0.6,
+                        (Auto_Struct.RobotDirection.SPINCLOCKWISE, 0.6,
                                 Path_Constants.FSB_WP_Center[6], 10.0,
                                 Blue_FrontStage_CenterPark.this);
-                sleep(sleeptime);
+                ArmRobotUtilities.OperateWrist(ArmRobotUtilities.wristDownPosition);
+                // move backward by 25:
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.BACKWARD, 0.6,
+                                Path_Constants.FSB_WP_Center[7], 10.0,
+                                Blue_FrontStage_CenterPark.this);
+                ArmRobotUtilities.OperateWrist(ArmRobotUtilities.wristUpPosition);
+
+                // move backward by 52
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.BACKWARD, 0.6,
+                                Path_Constants.FSB_WP_Center[8], 10.0,
+                                Blue_FrontStage_CenterPark.this);
+                // Strafe Right by 25 inches:
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.RIGHT, 0.6,
+                                Path_Constants.FSB_WP_Center[9], 10.0,
+                                Blue_FrontStage_CenterPark.this);
+
+                // Backward by 8 inches:
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.BACKWARD, 0.6,
+                                Path_Constants.FSB_WP_Center[10], 10.0,
+                                Blue_FrontStage_CenterPark.this);
+
+                // arm up to drop off pixel on board
                 // Raise Arm:
                 ArmRobotUtilities.encoderArm(ArmRobotUtilities.armSpeed * 2,
                         ArmRobotUtilities.armScoreLeftPosition, 5.0,
@@ -133,7 +159,7 @@ public class Blue_FrontStage_CenterPark extends LinearOpMode
                 // Strafe Left
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.LEFT, driveSpeed,
-                                Path_Constants.FSB_WP_Center[8], 10.0,
+                                Path_Constants.FSB_WP_Center[13], 10.0,
                                 Blue_FrontStage_CenterPark.this);
                 sleep(sleeptime);
                 // Drop Arm: (to final position)
@@ -143,7 +169,7 @@ public class Blue_FrontStage_CenterPark extends LinearOpMode
                 // Move Backward #4:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.BACKWARD, 0.4,
-                                Path_Constants.FSB_WP_Center[9], 10.0,
+                                Path_Constants.FSB_WP_Center[14], 10.0,
                                 Blue_FrontStage_CenterPark.this);
                 sleep(sleeptime);
 

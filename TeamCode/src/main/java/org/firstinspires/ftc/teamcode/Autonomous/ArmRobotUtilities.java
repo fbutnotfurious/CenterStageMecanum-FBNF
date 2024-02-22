@@ -21,7 +21,7 @@ public class ArmRobotUtilities
     public static final double gripperClosedPosition = 0.6;
     public static final double gripperOpenPosition = 0.45;
     public static final double wristUpPosition = 1.5;
-    public static final double wristDownPosition = 0.43;
+    public static final double wristDownPosition = 0.35;//0.43
 
     public static final int armHomePosition = 0;
     public static final int armIntakePosition = 0;

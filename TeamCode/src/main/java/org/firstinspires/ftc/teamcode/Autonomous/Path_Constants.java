@@ -14,7 +14,7 @@ public class Path_Constants
     // BSR Center Park & BSR Corner Park:
 
     // FSB Center Park & FSB Corner Park:
-    public static double[] FSB_WP_Center = new double[10];
+    public static double[] FSB_WP_Center = new double[16];
     public static double [] FSB_WP_Left = new double[14];
     public static double [] FSB_WP_Right = new double[12];
 
@@ -70,16 +70,29 @@ public class Path_Constants
         // Frontstage Blue (FSB) Center Spike:
         // Corner Park Constants:
         FSB_WP_Center[0] = 16.5; // Move Forward by 16.5
-        FSB_WP_Center[1] = 8.0; // Move Forward by 8.0
-        FSB_WP_Center[2] = 3.0; // Move Backward by 3.0
-        FSB_WP_Center[3] = 6.0; // Move Backward by 6.0
-        FSB_WP_Center[4] = 14.0; // Strafe Front Right Diagonal by 14.0
-        FSB_WP_Center[5] = 21.50; // Spin Clockwise by 21.5
-        FSB_WP_Center[6] = 83.0; // Move Backward by 83.0
-        FSB_WP_Center[7] = 24.0; // Strafe Right by 24.0
+        FSB_WP_Center[1] = 7.0; // Move Forward by 8.0
+        FSB_WP_Center[2] = 3.25; // Move Backward by 4.0
+
+
+        FSB_WP_Center[3] = 16.0; // strafe right by 12.0
+        FSB_WP_Center[4] = 30.25; // Move forward by 30.0
+        FSB_WP_Center[5] = 19.0; // strafe left by 18.0
+        FSB_WP_Center[6] = 21.50; // Spin Clockwise by 21.5
+        // wrist down
+        FSB_WP_Center[7] = 45.0; // Move Backward by 67
+        FSB_WP_Center[8] = 22.0; // Move Backward by 67
+
+        // wrist up
+        FSB_WP_Center[9] = 23.0; // strafe right by 20 //28.5
+        FSB_WP_Center[10] = 10.0; // Backward by 10 inches
+
+        //drop pixel
+        FSB_WP_Center[11] = 22.5; // Strafe left by 29.0
+        FSB_WP_Center[12] = 10.0; // Move Backward by 10.0
+
         // Center Park Constants: (above 0-6, rewrite 7, add 9)
-        FSB_WP_Center[8] = 20.0; // Strafe Left by 20.0
-        FSB_WP_Center[9] = 5.0; // Move Backward by 5.0
+        FSB_WP_Center[13] = 22.5; // Strafe Left by 20.0
+        FSB_WP_Center[14] = 5.0; // Move Backward by 5.0
 
         // Frontstage Blue (FSB) Left Spike:
         // Corner Park Constants:

@@ -26,7 +26,7 @@ public class Blue_BackStage_CenterPark extends LinearOpMode
     public static WebcamPipeline detector=null;
     public static Prop location = Prop.RIGHT;
     //AprilTagDetectionPipeline aprilTagDetectionPipeline;
-    static final double FEET_PER_METER = 3.28084;
+    public final double FEET_PER_METER = 3.28084;
 
     // Lens intrinsics
     // UNITS ARE PIXELS
@@ -316,12 +316,14 @@ public class Blue_BackStage_CenterPark extends LinearOpMode
     }
     // Initialize Camera
 
-    public  void InitializeCamera(LinearOpMode opMode )
+    public  void InitializeCamera(LinearOpMode opMode)
     {
-        int cameraMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
-        webcam1 = OpenCvCameraFactory.getInstance().createWebcam(opMode.hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        webcam1 = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         if (detector==null)
-        {detector = new WebcamPipeline(opMode.telemetry, StartPosition.BLUE_STAGE);}
+        {detector = new WebcamPipeline(telemetry, StartPosition.BLUE_STAGE);}
+        telemetry.addData("Status", "Initialized Camera");
+        telemetry.update();
     }
 
 
@@ -340,6 +342,8 @@ public class Blue_BackStage_CenterPark extends LinearOpMode
             public void onError(int errorCode) {
             }
         });
+        telemetry.addData("Status", "Set Camera Pipeline");
+        telemetry.update();
     }
 
     // Start Camera
@@ -376,6 +380,7 @@ public class Blue_BackStage_CenterPark extends LinearOpMode
 
         opMode.telemetry.addData("Running path", detector.getPropLocation().toString(), location);
         opMode.telemetry.update();
+
 
     }
 
