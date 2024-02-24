@@ -12,9 +12,9 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
-@Autonomous(name="Red Backstage Robot Center Park", group="Robot")
+@Autonomous(name="Red Backstage  Robot Center Park", group="Robot")
 //@Disabled
-
+// BSB CENTER PARK:
 public class Red_BackStage_CenterPark extends LinearOpMode
 {
     // List of Variables:
@@ -26,7 +26,7 @@ public class Red_BackStage_CenterPark extends LinearOpMode
     public static WebcamPipeline detector=null;
     public static Prop location = Prop.RIGHT;
     //AprilTagDetectionPipeline aprilTagDetectionPipeline;
-    static final double FEET_PER_METER = 3.28084;
+    public final double FEET_PER_METER = 3.28084;
 
     // Lens intrinsics
     // UNITS ARE PIXELS
@@ -59,14 +59,13 @@ public class Red_BackStage_CenterPark extends LinearOpMode
         waitForStart();
         startCamera(Red_BackStage_CenterPark.this);
 
-        waitForStart();
         while (opModeIsActive())
         {
             if (location==Prop.CENTER) {
                 // Move Forward #1:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.FORWARD, 0.4,
-                                Path_Constants.BSB_WP_Center[0], 10.0,
+                                Path_Constants.BSR_WP_Center[0], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Wrist Down:
@@ -75,7 +74,7 @@ public class Red_BackStage_CenterPark extends LinearOpMode
                 // Move Forward #2:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.FORWARD, 0.4,
-                                Path_Constants.BSB_WP_Center[1], 10.0,
+                                Path_Constants.BSR_WP_Center[1], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Open Gripper:
@@ -84,7 +83,7 @@ public class Red_BackStage_CenterPark extends LinearOpMode
                 // Move Backward #1:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.BACKWARD, driveSpeed,
-                                Path_Constants.BSB_WP_Center[2], 10.0,
+                                Path_Constants.BSR_WP_Center[2], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Closed Gripper:
@@ -96,19 +95,19 @@ public class Red_BackStage_CenterPark extends LinearOpMode
                 // Move Backward #2:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.BACKWARD, driveSpeed,
-                                Path_Constants.BSB_WP_Center[3], 10.0,
+                                Path_Constants.BSR_WP_Center[3], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Turn Left:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.SPINANTICLOCKWISE, turnSpeed,
-                                Path_Constants.BSB_WP_Center[4], 10.0,
+                                Path_Constants.BSR_WP_Center[4], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Move Backward #3:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.BACKWARD, 0.6,
-                                Path_Constants.BSB_WP_Center[5], 10.0,
+                                Path_Constants.BSR_WP_Center[5], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Raise Arm:
@@ -124,7 +123,7 @@ public class Red_BackStage_CenterPark extends LinearOpMode
                 // Strafe Right:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.RIGHT, driveSpeed,
-                                Path_Constants.BSB_WP_Center[8], 10.0,
+                                Path_Constants.BSR_WP_Center[8], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Drop Arm: (to final position)
@@ -134,23 +133,29 @@ public class Red_BackStage_CenterPark extends LinearOpMode
                 // Move Backward #4:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.BACKWARD, 0.4,
-                                Path_Constants.BSB_WP_Center[9], 10.0,
+                                Path_Constants.BSR_WP_Center[9], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // END OF AUTONOMOUS
             }
             else if (location==Prop.LEFT)
             {
-                // Strafe Right:
+                // Strafe RIGHT:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.RIGHT, 0.35,
-                                Path_Constants.BSB_WP_Left[0], 10.0,
+                                Path_Constants.BSR_WP_Right[0], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Move Forward #1:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.FORWARD, 0.35,
-                                Path_Constants.BSB_WP_Left[1], 10.0,
+                                Path_Constants.BSR_WP_Right[1], 10.0,
+                                Red_BackStage_CenterPark.this);
+                sleep(sleeptime);
+                // Turn Left:
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.SPINANTICLOCKWISE, 0.35,
+                                Path_Constants.BSR_WP_Right[2], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Wrist Down:
@@ -159,7 +164,7 @@ public class Red_BackStage_CenterPark extends LinearOpMode
                 // Move Forward #2:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.FORWARD, 0.35,
-                                Path_Constants.BSB_WP_Left[2], 10.0,
+                                Path_Constants.BSR_WP_Right[3], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Open Gripper:
@@ -168,7 +173,7 @@ public class Red_BackStage_CenterPark extends LinearOpMode
                 // Move Backward #1:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.BACKWARD, 0.35,
-                                Path_Constants.BSB_WP_Left[3], 10.0,
+                                Path_Constants.BSR_WP_Right[4], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Close Gripper:
@@ -180,19 +185,13 @@ public class Red_BackStage_CenterPark extends LinearOpMode
                 // Move Backward #2:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.BACKWARD, 0.35,
-                                Path_Constants.BSB_WP_Left[4], 10.0,
+                                Path_Constants.BSR_WP_Right[5], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
-                // Turn Left:
+                // Strafe Right:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.SPINANTICLOCKWISE, 0.35,
-                                Path_Constants.BSB_WP_Left[5], 10.0,
-                                Red_BackStage_CenterPark.this);
-                sleep(sleeptime);
-                // Move Backward #3:
-                MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.BACKWARD, 0.35,
-                                Path_Constants.BSB_WP_Left[6], 10.0,
+                        (Auto_Struct.RobotDirection.RIGHT, 0.35,
+                                Path_Constants.BSR_WP_Right[6], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Raise Arm:
@@ -205,20 +204,21 @@ public class Red_BackStage_CenterPark extends LinearOpMode
                 ArmRobotUtilities.encoderArm(-ArmRobotUtilities.armSpeed * 2.5,
                         ArmRobotUtilities.armIntermediate, 5.0,
                         Red_BackStage_CenterPark.this);
-                // Strafe Right:
+                // Strafe RIGHT:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.RIGHT, driveSpeed,
-                                Path_Constants.BSB_WP_Left[9], 10.0,
+                        (Auto_Struct.RobotDirection.RIGHT, 0.35,
+                                Path_Constants.BSR_WP_Right[9], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Drop Arm: (to final position)
                 ArmRobotUtilities.encoderArm(-ArmRobotUtilities.armSpeed * 2.5,
                         ArmRobotUtilities.armIntakePosition, 5.0,
                         Red_BackStage_CenterPark.this);
-                // Move Backward #4:
+                sleep(sleeptime);
+                // Move Backward #3:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.BACKWARD, 0.4,
-                                Path_Constants.BSB_WP_Left[10], 10.0,
+                        (Auto_Struct.RobotDirection.BACKWARD, 0.35,
+                                Path_Constants.BSR_WP_Right[10], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
 
@@ -228,19 +228,13 @@ public class Red_BackStage_CenterPark extends LinearOpMode
                 // Strafe Right:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.RIGHT, 0.35,
-                                Path_Constants.BSB_WP_Right[0], 10.0,
+                                Path_Constants.BSR_WP_Left[0], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Move Forward #1:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.FORWARD, 0.35,
-                                Path_Constants.BSB_WP_Right[1], 10.0,
-                                Red_BackStage_CenterPark.this);
-                sleep(sleeptime);
-                // Turn Left:
-                MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.SPINANTICLOCKWISE, 0.35,
-                                Path_Constants.BSB_WP_Right[2], 10.0,
+                                Path_Constants.BSR_WP_Left[1], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Wrist Down:
@@ -249,7 +243,7 @@ public class Red_BackStage_CenterPark extends LinearOpMode
                 // Move Forward #2:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.FORWARD, 0.35,
-                                Path_Constants.BSB_WP_Right[3], 10.0,
+                                Path_Constants.BSR_WP_Left[2], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Open Gripper:
@@ -258,7 +252,7 @@ public class Red_BackStage_CenterPark extends LinearOpMode
                 // Move Backward #1:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.BACKWARD, 0.35,
-                                Path_Constants.BSB_WP_Right[4], 10.0,
+                                Path_Constants.BSR_WP_Left[3], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Close Gripper:
@@ -270,13 +264,19 @@ public class Red_BackStage_CenterPark extends LinearOpMode
                 // Move Backward #2:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.BACKWARD, 0.35,
-                                Path_Constants.BSB_WP_Right[5], 10.0,
+                                Path_Constants.BSR_WP_Left[4], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
-                // Strafe Right:
+                // Turn Left:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.RIGHT, 0.35,
-                                Path_Constants.BSB_WP_Right[6], 10.0,
+                        (Auto_Struct.RobotDirection.SPINANTICLOCKWISE, 0.35,
+                                Path_Constants.BSR_WP_Left[5], 10.0,
+                                Red_BackStage_CenterPark.this);
+                sleep(sleeptime);
+                // Move Backward #3:
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.BACKWARD, 0.35,
+                                Path_Constants.BSR_WP_Left[6], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Raise Arm:
@@ -291,19 +291,18 @@ public class Red_BackStage_CenterPark extends LinearOpMode
                         Red_BackStage_CenterPark.this);
                 // Strafe Right:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.RIGHT, 0.35,
-                                Path_Constants.BSB_WP_Right[9], 10.0,
+                        (Auto_Struct.RobotDirection.RIGHT, driveSpeed,
+                                Path_Constants.BSR_WP_Left[9], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
                 // Drop Arm: (to final position)
                 ArmRobotUtilities.encoderArm(-ArmRobotUtilities.armSpeed * 2.5,
                         ArmRobotUtilities.armIntakePosition, 5.0,
                         Red_BackStage_CenterPark.this);
-                sleep(sleeptime);
-                // Move Backward #3:
+                // Move Backward #4:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.BACKWARD, 0.35,
-                                Path_Constants.BSB_WP_Right[10], 10.0,
+                        (Auto_Struct.RobotDirection.BACKWARD, 0.4,
+                                Path_Constants.BSR_WP_Left[10], 10.0,
                                 Red_BackStage_CenterPark.this);
                 sleep(sleeptime);
 
@@ -316,12 +315,14 @@ public class Red_BackStage_CenterPark extends LinearOpMode
     }
     // Initialize Camera
 
-    public  void InitializeCamera(LinearOpMode opMode )
+    public  void InitializeCamera(LinearOpMode opMode)
     {
-        int cameraMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
-        webcam1 = OpenCvCameraFactory.getInstance().createWebcam(opMode.hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        webcam1 = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         if (detector==null)
-        {detector = new WebcamPipeline(opMode.telemetry, StartPosition.BLUE_STAGE);}
+        {detector = new WebcamPipeline(telemetry, StartPosition.RED_STAGE);}
+        telemetry.addData("Status", "Initialized Camera");
+        telemetry.update();
     }
 
 
@@ -340,6 +341,8 @@ public class Red_BackStage_CenterPark extends LinearOpMode
             public void onError(int errorCode) {
             }
         });
+        telemetry.addData("Status", "Set Camera Pipeline");
+        telemetry.update();
     }
 
     // Start Camera
@@ -376,6 +379,7 @@ public class Red_BackStage_CenterPark extends LinearOpMode
 
         opMode.telemetry.addData("Running path", detector.getPropLocation().toString(), location);
         opMode.telemetry.update();
+
 
     }
 
