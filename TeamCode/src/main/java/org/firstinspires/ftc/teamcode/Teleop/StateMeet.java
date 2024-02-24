@@ -279,6 +279,9 @@ public class StateMeet extends OpMode
 
         //if not in hanging mode and not in manual mode, then run this if statement
         //when gamepad2.a is clicked, it gets out of hanging mode and goes into manual mode after running this if statement
+        else
+        {
+
         if (Math.abs(manualArmPower) > armManualDeadband ) {
             if (!manualMode) {
                 //armLeft.setPower(0.0);
@@ -324,7 +327,7 @@ public class StateMeet extends OpMode
                 rightArmMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 manualMode = false;
             }
-
+        }
             //preset buttons
             if (gamepad1.a) {
                 wrist.setPosition(wristDownPosition);

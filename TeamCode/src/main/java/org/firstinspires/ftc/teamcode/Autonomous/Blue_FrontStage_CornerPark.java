@@ -15,7 +15,7 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
-@Autonomous(name="Blue Frontstage Robot Corner Park", group="Robot")
+@Autonomous(name="Blue Frontstage Robot Auto", group="Robot")
 //@Disabled
 public class Blue_FrontStage_CornerPark extends LinearOpMode
 {
@@ -157,20 +157,20 @@ public class Blue_FrontStage_CornerPark extends LinearOpMode
                         ArmRobotUtilities.armIntermediate, 5.0,
                         Blue_FrontStage_CornerPark.this);
                 // Strafe Right
-                MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.RIGHT, driveSpeed,
-                                Path_Constants.FSB_WP_Center[11], 10.0,
-                                Blue_FrontStage_CornerPark.this);
-                sleep(sleeptime);
+              //  MecanumRobotUtilities.encoderDrive
+                //        (Auto_Struct.RobotDirection.RIGHT, driveSpeed,
+                  //              Path_Constants.FSB_WP_Center[11], 10.0,
+                    //            Blue_FrontStage_CornerPark.this);
+                //sleep(sleeptime);
                 // Drop Arm: (to final position)
                 ArmRobotUtilities.encoderArm(-ArmRobotUtilities.armSpeed * 2.5,
                         ArmRobotUtilities.armIntakePosition, 5.0,
                         Blue_FrontStage_CornerPark.this);
                 // Move Backward #4:
-                MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.BACKWARD, 0.4,
-                                Path_Constants.FSB_WP_Center[12], 10.0,
-                                Blue_FrontStage_CornerPark.this);
+                //MecanumRobotUtilities.encoderDrive
+                       // (Auto_Struct.RobotDirection.BACKWARD, 0.4,
+                            //    Path_Constants.FSB_WP_Center[12], 10.0,
+                          //      Blue_FrontStage_CornerPark.this);
                 sleep(sleeptime);
 
                 // END OF AUTONOMOUS
@@ -242,6 +242,39 @@ public class Blue_FrontStage_CornerPark extends LinearOpMode
                                 Blue_FrontStage_CornerPark.this);
                 sleep(sleeptime);
 
+                ArmRobotUtilities.OperateWrist(ArmRobotUtilities.wristDownPosition);
+
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.BACKWARD, driveSpeed,
+                                Path_Constants.FSB_WP_Left[9], 10.0,
+                                Blue_FrontStage_CornerPark.this);
+                sleep(sleeptime);
+
+                ArmRobotUtilities.OperateWrist(ArmRobotUtilities.wristUpPosition);
+
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.BACKWARD, driveSpeed,
+                                Path_Constants.FSB_WP_Left[10], 10.0,
+                                Blue_FrontStage_CornerPark.this);
+                sleep(sleeptime);
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.RIGHT, driveSpeed,
+                                Path_Constants.FSB_WP_Left[11], 10.0,
+                                Blue_FrontStage_CornerPark.this);
+                sleep(sleeptime);
+                // Raise Arm:
+                ArmRobotUtilities.encoderArm(ArmRobotUtilities.armSpeed * 2,
+                        ArmRobotUtilities.armScoreLeftPosition, 5.0,
+                        Blue_FrontStage_CornerPark.this);
+                // Open Gripper:
+                ArmRobotUtilities.OperateGripper(ArmRobotUtilities.gripperOpenPosition);
+                // Drop Arm: (only slightly)
+                ArmRobotUtilities.encoderArm(-ArmRobotUtilities.armSpeed * 2.5,
+                        ArmRobotUtilities.armIntermediate, 5.0,
+                        Blue_FrontStage_CornerPark.this);
+
+
+
                 // END OF AUTONOMOUS
             }
             else
@@ -299,6 +332,40 @@ public class Blue_FrontStage_CornerPark extends LinearOpMode
                                 Path_Constants.FSB_WP_Right[6], 10.0,
                                 Blue_FrontStage_CornerPark.this);
                 sleep(sleeptime);
+                ArmRobotUtilities.OperateWrist(ArmRobotUtilities.wristDownPosition);
+
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.BACKWARD, driveSpeed,
+                                Path_Constants.FSB_WP_Right[7], 10.0,
+                                Blue_FrontStage_CornerPark.this);
+                sleep(sleeptime);
+
+                ArmRobotUtilities.OperateWrist(ArmRobotUtilities.wristUpPosition);
+
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.BACKWARD, driveSpeed,
+                                Path_Constants.FSB_WP_Right[8], 10.0,
+                                Blue_FrontStage_CornerPark.this);
+                sleep(sleeptime);
+
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.RIGHT, driveSpeed,
+                                Path_Constants.FSB_WP_Right[9], 10.0,
+                                Blue_FrontStage_CornerPark.this);
+                sleep(sleeptime);
+
+
+                // Raise Arm:
+                ArmRobotUtilities.encoderArm(ArmRobotUtilities.armSpeed * 2,
+                        ArmRobotUtilities.armScoreLeftPosition, 5.0,
+                        Blue_FrontStage_CornerPark.this);
+                // Open Gripper:
+                ArmRobotUtilities.OperateGripper(ArmRobotUtilities.gripperOpenPosition);
+                // Drop Arm: (only slightly)
+                ArmRobotUtilities.encoderArm(-ArmRobotUtilities.armSpeed * 2.5,
+                        ArmRobotUtilities.armIntermediate, 5.0,
+                        Blue_FrontStage_CornerPark.this);
+
 
                 // END OF AUTONOMOUS
             }

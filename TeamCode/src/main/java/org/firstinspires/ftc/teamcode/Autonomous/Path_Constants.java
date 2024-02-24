@@ -11,18 +11,28 @@ public class Path_Constants
     public static double[] BSB_WP_Left = new double[11];
     public static double[] BSB_WP_Right = new double[11];
 
-    // BSR Center Park & BSR Corner Park:
+    // BSR Center Park & BSR Corner Park: ******
+    public static double [] BSR_WP_Center = new double[15];
+    public static double [] BSR_WP_Left = new double[15];
+    public static double [] BSR_WP_Right = new double[15];
 
     // FSB Center Park & FSB Corner Park:
     public static double[] FSB_WP_Center = new double[16];
-    public static double [] FSB_WP_Left = new double[14];
+    public static double [] FSB_WP_Left = new double[12];
     public static double [] FSB_WP_Right = new double[12];
+
 
     // FBR Center Park & FBR Corner Park:
 
     // Setting the values to the path constants:
     public static void SetData()
     {
+
+        //Backstage Red Center Spike:
+        //Corner Park Constraints:
+       // FSB_WP_Center[0]
+
+
         // Backstage Blue (BSB) Center Spike:
         // Corner Park Constants:
         BSB_WP_Center[0]=16.5; // Move Forward by 16.5
@@ -67,24 +77,24 @@ public class Path_Constants
         BSB_WP_Right[9] = 14.0; // Strafe Left by 14.0
         BSB_WP_Right[10] = 12.0; // Move Backward by 12.0
 
-        // Frontstage Blue (FSB) Center Spike:
+        // Frontstage Blue (FSB) Center Spike: ***************
         // Corner Park Constants:
         FSB_WP_Center[0] = 16.5; // Move Forward by 16.5
-        FSB_WP_Center[1] = 7.0; // Move Forward by 8.0
+        FSB_WP_Center[1] = 8.0; // Move Forward by 8.0
         FSB_WP_Center[2] = 3.25; // Move Backward by 4.0
 
 
         FSB_WP_Center[3] = 16.0; // strafe right by 12.0
         FSB_WP_Center[4] = 30.25; // Move forward by 30.0
-        FSB_WP_Center[5] = 19.0; // strafe left by 18.0
+        FSB_WP_Center[5] = 20.0; // strafe left by 18.0
         FSB_WP_Center[6] = 21.50; // Spin Clockwise by 21.5
         // wrist down
         FSB_WP_Center[7] = 45.0; // Move Backward by 67
         FSB_WP_Center[8] = 22.0; // Move Backward by 67
 
         // wrist up
-        FSB_WP_Center[9] = 23.0; // strafe right by 20 //28.5
-        FSB_WP_Center[10] = 10.0; // Backward by 10 inches
+        FSB_WP_Center[9] = 24.0; // strafe right by 20 //28.5
+        FSB_WP_Center[10] = 7.0; // Backward by 8.5 inches
 
         //drop pixel
         FSB_WP_Center[11] = 22.5; // Strafe left by 29.0
@@ -100,17 +110,23 @@ public class Path_Constants
         FSB_WP_Left[1] = 6.0; // Move Forward by 6.0
         FSB_WP_Left[2] = 22.0; // Spin Anticlockwise by 22.0
         FSB_WP_Left[3] = 24.0; // Strafe Right by 24.0
-        FSB_WP_Left[4] = 8.0; // Move Forward by 8.0
+        FSB_WP_Left[4] = 5.5; // Move Forward by 4.5
         // drop wrist and open gripper
         FSB_WP_Left[5] = 3.25; // Move Backward by 3.0
         // close gripper and wrist up
         FSB_WP_Left[6] = 7.0; // Move Backward by 7.0
         FSB_WP_Left[7] = 20.0; // Strafe Right 18.0
-        FSB_WP_Left[8] = 44.0; // Spin Anticlockwise by 44.0
+        FSB_WP_Left[8] = 43.0; // Spin Anticlockwise by 44.0
+        // wrist down
+        FSB_WP_Left[9] = 52.0; // Move Backward by 50
+        // Wrist up
+        FSB_WP_Left[10] = 36.0; // Move Backward by 36
+        FSB_WP_Left[11] = 36.0; // Move right by 36
+
+        //Corner Park
 
         // Center Park Constants:
-        FSB_WP_Left[9] = 4.0; // Strafe Left by 4.0
-        FSB_WP_Left[10] = 12.0; // Move Backward by 12.0
+
 
 
         // Frontstage Blue (FSB) Right Spike:
@@ -122,14 +138,17 @@ public class Path_Constants
         // open gripper
         FSB_WP_Right[3] = 3.0; // Move Backward by 3.0
         // close gripper wrist up
-        FSB_WP_Right[4] = 10.5; // Strafe Left by 9.5
+        FSB_WP_Right[4] = 11.5; // Strafe Left by 9.5
         FSB_WP_Right[5] = 33.0; // Move Forward by 33.0
         FSB_WP_Right[6] = 22.0; // Spin Clockwise by 22.0
-        // Center Park Constants:
-        FSB_WP_Right[8] = 20.0; // Strafe Left by 20.0
-        FSB_WP_Right[9] = 12.0; // Move Backward by 12.0
+        // wrist down
+        FSB_WP_Right[7] = 56.2; // Move Backward by 50
+        // Wrist up
+        FSB_WP_Right[8] = 22.0; // Move Backward by 36
+        FSB_WP_Right[9] = 20.0; // Move right by 6
 
     }
 
 
 }
+
