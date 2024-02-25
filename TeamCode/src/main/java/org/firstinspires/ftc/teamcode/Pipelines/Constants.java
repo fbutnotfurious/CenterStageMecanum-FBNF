@@ -15,6 +15,10 @@ public class Constants {
             new Point(130, 30),//25,60
             new Point(310, 80)//85 130, 270
     );
+    public static final Rect CENTER_ROI_RED_SPIKE_START = new Rect(
+            new Point(200, 70),//25,60
+            new Point(310, 80)//85 130, 270
+    );
     // set boundaries for red side - right ROI
     public static final Rect RIGHT_ROI_RED = new Rect(
             new Point(170, 70),

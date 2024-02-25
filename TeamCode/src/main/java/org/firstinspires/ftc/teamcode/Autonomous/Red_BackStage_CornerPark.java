@@ -44,8 +44,7 @@ public class Red_BackStage_CornerPark extends LinearOpMode
     AprilTagDetection tagOfInterest = null;
 
     @Override
-    public void runOpMode()
-    {
+    public void runOpMode() {
         Path_Constants.SetData();
         MecanumRobotUtilities.InitializeHardware(Red_BackStage_CornerPark.this);
         ArmRobotUtilities.InitializeArm(Red_BackStage_CornerPark.this);
@@ -59,9 +58,8 @@ public class Red_BackStage_CornerPark extends LinearOpMode
         waitForStart();
         startCamera(Red_BackStage_CornerPark.this);
 
-        while (opModeIsActive())
-        {
-            if (location==Prop.CENTER) {
+        while (opModeIsActive()) {
+            if (location == Prop.CENTER) {
                 // Move Forward #1:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.FORWARD, 0.4,
@@ -137,8 +135,7 @@ public class Red_BackStage_CornerPark extends LinearOpMode
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
                 // END OF AUTONOMOUS
-            }
-            else if (location==Prop.LEFT)
+            } else if (location == Prop.LEFT)
             {
                 // Strafe Right:
                 MecanumRobotUtilities.encoderDrive
@@ -152,13 +149,19 @@ public class Red_BackStage_CornerPark extends LinearOpMode
                                 Path_Constants.BSB_WP_Left[1], 10.0,
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
+                // Turn Left:
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.SPINANTICLOCKWISE, 0.35,
+                                Path_Constants.BSB_WP_Left[2], 10.0,
+                                Red_BackStage_CornerPark.this);
+                sleep(sleeptime);
                 // Wrist Down:
                 ArmRobotUtilities.OperateWrist(ArmRobotUtilities.wristDownPosition);
                 sleep(sleeptime);
                 // Move Forward #2:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.FORWARD, 0.35,
-                                Path_Constants.BSB_WP_Left[2], 10.0,
+                                Path_Constants.BSB_WP_Left[3], 10.0,
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
                 // Open Gripper:
@@ -167,7 +170,7 @@ public class Red_BackStage_CornerPark extends LinearOpMode
                 // Move Backward #1:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.BACKWARD, 0.35,
-                                Path_Constants.BSB_WP_Left[3], 10.0,
+                                Path_Constants.BSB_WP_Left[4], 10.0,
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
                 // Close Gripper:
@@ -179,18 +182,12 @@ public class Red_BackStage_CornerPark extends LinearOpMode
                 // Move Backward #2:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.BACKWARD, 0.35,
-                                Path_Constants.BSB_WP_Left[4], 10.0,
-                                Red_BackStage_CornerPark.this);
-                sleep(sleeptime);
-                // Turn Left:
-                MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.SPINANTICLOCKWISE, 0.35,
                                 Path_Constants.BSB_WP_Left[5], 10.0,
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
-                // Move Backward #3:
+                // Strafe Right:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.BACKWARD, 0.35,
+                        (Auto_Struct.RobotDirection.RIGHT, 0.35,
                                 Path_Constants.BSB_WP_Left[6], 10.0,
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
@@ -206,40 +203,40 @@ public class Red_BackStage_CornerPark extends LinearOpMode
                         Red_BackStage_CornerPark.this);
                 // Strafe Left:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.LEFT, driveSpeed,
-                                Path_Constants.BSB_WP_Left[9], 10.0,
+                        (Auto_Struct.RobotDirection.LEFT, 0.35,
+                                Path_Constants.BSB_WP_Left[7], 10.0,
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
                 // Drop Arm: (to final position)
                 ArmRobotUtilities.encoderArm(-ArmRobotUtilities.armSpeed * 2.5,
                         ArmRobotUtilities.armIntakePosition, 5.0,
                         Red_BackStage_CornerPark.this);
-                // Move Backward #4:
+                sleep(sleeptime);
+                // Move Backward #3:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.BACKWARD, 0.4,
-                                Path_Constants.BSB_WP_Left[10], 10.0,
+                        (Auto_Struct.RobotDirection.BACKWARD, 0.35,
+                                Path_Constants.BSB_WP_Left[8], 10.0,
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
 
                 // END OF AUTONOMOUS
-            } else
-            {
-                // Strafe RIGHT:
+
+
+
+            }
+           else {;
+
+//Left
+                // Strafe Right:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.RIGHT, 0.35,
-                                Path_Constants.BSB_WP_Right[0], 10.0,
+                                Path_Constants.BSR_WP_Right[0], 10.0,
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
                 // Move Forward #1:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.FORWARD, 0.35,
-                                Path_Constants.BSB_WP_Right[1], 10.0,
-                                Red_BackStage_CornerPark.this);
-                sleep(sleeptime);
-                // Turn Left:
-                MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.SPINANTICLOCKWISE, 0.35,
-                                Path_Constants.BSB_WP_Right[2], 10.0,
+                                Path_Constants.BSR_WP_Right[1], 10.0,
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
                 // Wrist Down:
@@ -248,7 +245,7 @@ public class Red_BackStage_CornerPark extends LinearOpMode
                 // Move Forward #2:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.FORWARD, 0.35,
-                                Path_Constants.BSB_WP_Right[3], 10.0,
+                                Path_Constants.BSR_WP_Right[2], 10.0,
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
                 // Open Gripper:
@@ -257,7 +254,7 @@ public class Red_BackStage_CornerPark extends LinearOpMode
                 // Move Backward #1:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.BACKWARD, 0.35,
-                                Path_Constants.BSB_WP_Right[4], 10.0,
+                                Path_Constants.BSR_WP_Right[3], 10.0,
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
                 // Close Gripper:
@@ -269,13 +266,19 @@ public class Red_BackStage_CornerPark extends LinearOpMode
                 // Move Backward #2:
                 MecanumRobotUtilities.encoderDrive
                         (Auto_Struct.RobotDirection.BACKWARD, 0.35,
-                                Path_Constants.BSB_WP_Right[5], 10.0,
+                                Path_Constants.BSR_WP_Right[4], 10.0,
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
-                // Strafe Left:
+                // Turn Left:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.LEFT, 0.35,
-                                Path_Constants.BSB_WP_Right[6], 10.0,
+                        (Auto_Struct.RobotDirection.SPINANTICLOCKWISE, 0.35,
+                                Path_Constants.BSR_WP_Right[5], 10.0,
+                                Red_BackStage_CornerPark.this);
+                sleep(sleeptime);
+                // Move Backward #3:
+                MecanumRobotUtilities.encoderDrive
+                        (Auto_Struct.RobotDirection.BACKWARD, 0.35,
+                                Path_Constants.BSR_WP_Right[6], 10.0,
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
                 // Raise Arm:
@@ -288,34 +291,34 @@ public class Red_BackStage_CornerPark extends LinearOpMode
                 ArmRobotUtilities.encoderArm(-ArmRobotUtilities.armSpeed * 2.5,
                         ArmRobotUtilities.armIntermediate, 5.0,
                         Red_BackStage_CornerPark.this);
-                // Strafe Left:
+                // Strafe Left
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.LEFT, 0.35,
-                                Path_Constants.BSB_WP_Right[9], 10.0,
+                        (Auto_Struct.RobotDirection.LEFT, driveSpeed,
+                                Path_Constants.BSR_WP_Right[7], 10.0,
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
                 // Drop Arm: (to final position)
                 ArmRobotUtilities.encoderArm(-ArmRobotUtilities.armSpeed * 2.5,
                         ArmRobotUtilities.armIntakePosition, 5.0,
                         Red_BackStage_CornerPark.this);
-                sleep(sleeptime);
-                // Move Backward #3:
+                // Move Backward #4:
                 MecanumRobotUtilities.encoderDrive
-                        (Auto_Struct.RobotDirection.BACKWARD, 0.35,
-                                Path_Constants.BSB_WP_Right[10], 10.0,
+                        (Auto_Struct.RobotDirection.BACKWARD, 0.4,
+                                Path_Constants.BSR_WP_Right[8], 10.0,
                                 Red_BackStage_CornerPark.this);
                 sleep(sleeptime);
-
-                // END OF AUTONOMOUS
             }
-            terminateOpModeNow();
+                // END OF AUTONOMOUS:           }
+                terminateOpModeNow();
+
+            }
 
         }
 
-    }
-    // Initialize Camera
+        // Initialize Camera
 
-    public  void InitializeCamera(LinearOpMode opMode)
+        public void InitializeCamera (LinearOpMode opMode)
+
     {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam1 = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);

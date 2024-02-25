@@ -73,6 +73,7 @@ public class Path_Constants
         BSB_WP_Right[9] = 14.0; // Strafe Left by 14.0
         BSB_WP_Right[10] = 12.0; // Move Backward by 12.0
 
+
         // Frontstage Blue (FSB) Center Spike:
         // Corner Park Constants:
         FSB_WP_Center[0] = 16.5; // Move Forward by 16.5
@@ -151,35 +152,36 @@ public class Path_Constants
         BSR_WP_Center[8]=24.0; // Strafe Left by 24.0
         BSR_WP_Center[9]=12.0; // Move Backward by 10.0
 
-        // Backstage Blue (BSB) Left Spike:
-        // Corner Park Constants:
-        BSR_WP_Left[0] = 9.5; // Strafe Left by 9.5
-        BSR_WP_Left[1] = 10.0; // Move Forward by 10.0
-        BSR_WP_Left[2] = 13.0; // Move Forward by 14.0
-        BSR_WP_Left[3] = 3.0; // Move Backward by 3.0
-        BSR_WP_Left[4] = 1.0; // Move Backward 1.0
-        BSR_WP_Left[5] = 21.5; // Spin Clockwise by 21.5
-        BSR_WP_Left[6] = 21.0; // Move Backward by 21.0
-        BSR_WP_Left[7] = 16.0; // Strafe Right by 16.0
-        BSR_WP_Left[8] = 10.0; // Move Backward by 10.0
-        // Center Park Constants: (above 0-6, rewrite 7-8)
-        BSR_WP_Left[9] = 32.0; // Strafe Left by 32.0
-        BSR_WP_Left[10] = 12.0; // Move Backward by 12.0
 
-        // Backstage Blue (BSB) Right Spike:
+        // Backstage Red (BSR) Left Spike:
+        BSB_WP_Left[0] = 7.0; // Strafe Left by 7.0
+        BSB_WP_Left[1] = 27.0; // Move Forward by 27.0
+        BSB_WP_Left[2] = 22.0; // Spin Clockwise by 22.0
+        BSB_WP_Left[3] = 6.5; // Move Forward by 6.5
+        BSB_WP_Left[4] = 3.0; // Move Backward by 3.0
+        BSB_WP_Left[5] = 27.0; // Move Backward by 27.0
+        BSB_WP_Left[6] = 3.0; // Strafe Left by 2.0
+        BSB_WP_Left[7] = 29.0; // Strafe Right by 29.0
+        BSB_WP_Left[8] = 10.0; // Move Backward by 10.0
+        // Center Park Constants: (above 0-6, rewrite 7-8)
+        BSB_WP_Left[9] = 14.0; // Strafe Left by 14.0
+        BSB_WP_Left[10] = 12.0; // Move Backward by 12.0
+
+
+        // Backstage Red (BSR) Right Spike:
         // Corner Park Constants:
-        BSR_WP_Right[0] = 7.0; // Strafe Left by 7.0
-        BSR_WP_Right[1] = 27.0; // Move Forward by 27.0
-        BSR_WP_Right[2] = 22.0; // Spin Clockwise by 22.0
-        BSR_WP_Right[3] = 6.5; // Move Forward by 6.5
-        BSR_WP_Right[4] = 3.0; // Move Backward by 3.0
-        BSR_WP_Right[5] = 27.0; // Move Backward by 27.0
-        BSR_WP_Right[6] = 3.0; // Strafe Left by 2.0
-        BSR_WP_Right[7] = 29.0; // Strafe Right by 29.0
+        BSR_WP_Right[0] = 9.5; // Strafe Left by 9.5
+        BSR_WP_Right[1] = 10.0; // Move Forward by 10.0
+        BSR_WP_Right[2] = 13.0; // Move Forward by 14.0
+        BSR_WP_Right[3] = 3.0; // Move Backward by 3.0
+        BSR_WP_Right[4] = 1.0; // Move Backward 1.0
+        BSR_WP_Right[5] = 21.5; // Spin Clockwise by 21.5
+        BSR_WP_Right[6] = 21.0; // Move Backward by 21.0
+        BSR_WP_Right[7] = 16.0; // Strafe Right by 16.0
         BSR_WP_Right[8] = 10.0; // Move Backward by 10.0
         // Center Park Constants: (above 0-6, rewrite 7-8)
-        BSR_WP_Right[9] = 20.0; // Strafe Left by 14.0
-        BSR_WP_Right[10] = 12.0; // Move Backward by 12.0
+        BSR_WP_Right[9] = 32.0; // Strafe Left by 32.0
+        BSR_WP_Right[10] = 12.0; // Move Backward by 12.0P_Center[9]=12.0; // Move Backward by 10.0
 
         // Frontstage Blue (FSB) Center Spike:
         // Corner Park Constants:

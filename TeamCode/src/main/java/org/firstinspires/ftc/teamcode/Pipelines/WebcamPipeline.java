@@ -9,6 +9,7 @@ import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvPipeline;
 
 import static org.firstinspires.ftc.teamcode.Pipelines.Constants.CENTER_ROI_BLUE;
+import static org.firstinspires.ftc.teamcode.Pipelines.Constants.CENTER_ROI_RED_SPIKE_START;
 import static org.firstinspires.ftc.teamcode.Pipelines.Constants.LEFT_ROI_RED;
 import static org.firstinspires.ftc.teamcode.Pipelines.Constants.CENTER_ROI_RED;
 import static org.firstinspires.ftc.teamcode.Pipelines.Constants.LEFT_ROI_BLUE;
@@ -33,8 +34,8 @@ public class WebcamPipeline extends OpenCvPipeline {
     Scalar highHSV;
     Mat mat = new Mat(); // Mat is a matrix
 
-    static double PERCENT_COLOR_THRESHOLD = 0.07;//0.15
-
+    static double PERCENT_COLOR_THRESHOLD = 0.10;//0.07
+    static double PERCENT_COLOR_THRESHOLD_SPIKE_START = 0.90;
     public WebcamPipeline(Telemetry t, StartPosition position) {
         telemetry = t;
         startPosition = position;
@@ -79,6 +80,16 @@ public class WebcamPipeline extends OpenCvPipeline {
             lowHSV = BLUE_LOW_HSV;
             highHSV = BLUE_HIGH_HSV;
         }
+        else if (startPosition == StartPosition.RED_STAGE_SPIKE_START) {
+            NONCENTER_ROI = LEFT_ROI_RED;// RIGHT_ROI_RED
+            CENTER_ROI = CENTER_ROI_RED_SPIKE_START;
+            undetectableLocation = Prop.RIGHT;
+            detectableNoncenter = Prop.LEFT;
+            lowHSV = RED_LOW_HSV;
+            highHSV = RED_HIGH_HSV;
+            PERCENT_COLOR_THRESHOLD=PERCENT_COLOR_THRESHOLD_SPIKE_START;
+        }
+
         else {
             throw new IllegalArgumentException("Invalid start position passed to pipeline!");
         }

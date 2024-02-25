@@ -52,7 +52,7 @@ The program attempts to recognize a Team Prop on a spike mark, place the purple 
 
 
 @Autonomous(name="Starting Position Checker", group="Robot")
-@Disabled
+//@Disabled
 public class StartingPositionTester extends LinearOpMode
 {
 
@@ -88,7 +88,7 @@ public class StartingPositionTester extends LinearOpMode
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
-        WebcamPipeline detector = new WebcamPipeline(telemetry, StartPosition.BLUE_STAGE);
+        WebcamPipeline detector = new WebcamPipeline(telemetry, StartPosition.RED_STAGE_SPIKE_START);
         webcam.setPipeline(detector);
 
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
